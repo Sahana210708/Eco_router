@@ -1,0 +1,18 @@
+[{
+  "_id": {
+    "$oid": "688d3a5195cad194bbeec4ac"
+  },
+  "segmentId": "NH44-KM340",
+  "slope": 4.5,
+  "speedLimit": 60,
+  "surface": "asphalt"
+},
+{
+  "_id": {
+    "$oid": "688d3a5195cad194bbeec4ad"
+  },
+  "segmentId": "NH44-KM341",
+  "slope": 2.2,
+  "speedLimit": 80,
+  "surface": "concrete"
+}]
