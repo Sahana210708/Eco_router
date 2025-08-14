@@ -1,0 +1,12 @@
+[{
+  "_id": {
+    "$oid": "688d3a0d95cad194bbeec4a9"
+  },
+  "userId": "user001",
+  "name": "Sai",
+  "preferences": {
+    "prioritize": "eco",
+    "fuelType": "diesel",
+    "vehicleType": "SUV"
+  }
+}]

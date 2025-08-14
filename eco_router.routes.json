@@ -1,0 +1,11 @@
+[{
+  "_id": {
+    "$oid": "688d3a4295cad194bbeec4ab"
+  },
+  "routeId": "routeA",
+  "from": "Chennai",
+  "to": "Bangalore",
+  "totalDistanceKm": 18,
+  "estimatedTimeMin": 25,
+  "ecoScore": 7.9
+}]

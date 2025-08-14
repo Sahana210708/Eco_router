@@ -1,18 +1,19 @@
 body {
-  font-family: Arial, sans-serif;
+  font-family: 'Segoe UI', sans-serif;
+  font-weight: 500;
   margin: 0;
   padding: 0;
 }
 
 header {
-  background: #4CAF50;
+  background: linear-gradient(90deg, #3d813f,#4ab64d, #26c52b, #3d813f);
   color: white;
   text-align: center;
   padding: 10px;
 }
 
 #map {
-  height: 400px; /* map height */
+  height: 400px; 
   width: 100%;
 }
 
@@ -31,7 +32,7 @@ button {
 }
 
 button:hover {
-  background: #45a049;
+  background: #28792c;
 }
 
 main {
