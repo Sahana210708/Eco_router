@@ -3,7 +3,8 @@ var map = L.map('map').setView([13.0827, 80.2707], 10); // Centered on Chennai
 
 // Add tile layer (OpenStreetMap)
 L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-    attribution: '&copy; OpenStreetMap contributors'
+    maxZoom: 19,
+    attribution: '© OpenStreetMap contributors'
 }).addTo(map);
 
 // Function to load database data

@@ -1,10 +1,15 @@
 from flask import Flask, jsonify, request
 from flask_cors import CORS
 from pymongo import MongoClient
+from flask import render_template
+import os
+from dotenv import load_dotenv
+
+load_dotenv()
 
 app = Flask(__name__)
 CORS(app)  # Allow frontend to access backend
-
+app.secret_key = os.getenv("SECRET_KEY") 
 # --- MongoDB connection ---
 client = MongoClient("mongodb://localhost:27017/")  # Local MongoDB
 db = client["eco_router"]  # Database name (change if needed)
@@ -48,6 +53,10 @@ def get_route_by_id(route_id):
     if route:
         return jsonify(route)
     return jsonify({"error": "Route not found"}), 404
+
+@app.route("/")
+def home():
+    return render_template("index.html")
 
 # ---------- RUN APP ----------
 if __name__ == "__main__":
