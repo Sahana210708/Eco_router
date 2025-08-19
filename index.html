@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Eco Router</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+</head>
+<body>
+    <h1>🚗 Eco Router</h1>
+    <p>Plan your journey the eco-friendly way</p>
+
+    <div id="map"></div>
+
+    <div class="controls">
+        <button onclick="navigateTo('routes.html')">Routes</button>
+        <button onclick="navigateTo('road_segments.html')">Road Segments</button>
+        <button onclick="navigateTo('traffic.html')">Traffic</button>
+        <button onclick="navigateTo('users.html')">Users</button>
+        <button onclick="navigateTo('vehicles.html')">Vehicles</button>
+    </div>
+
+    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
