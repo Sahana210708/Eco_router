@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Eco Router - Road Segments</title>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+</head>
+<body>
+    <h1>🛣 Road Segments</h1>
+    <p>Shows road slopes and surface conditions affecting eco-routing.</p>
+
+    <div id="map"></div>
+    <button onclick="window.location.href='/'">⬅ Back</button>
+
+    <script>
+        var map = L.map('map').setView([12.9716, 77.5946], 12);
+
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            maxZoom: 19,
+        }).addTo(map);
+
+        // Mock road segment data
+        var segments = [
+            {coords: [[12.9716, 77.5946], [12.9750, 77.6100]], slope: "steep", condition: "good"},
+            {coords: [[12.9600, 77.6000], [12.9500, 77.6150]], slope: "flat", condition: "poor"},
+            {coords: [[12.9400, 77.5900], [12.9300, 77.6050]], slope: "mild", condition: "fair"},
+        ];
+
+        segments.forEach(seg => {
+            let color = seg.slope === "steep" ? "red" : seg.slope === "mild" ? "orange" : "green";
+            let style = {color: color, weight: 5};
+
+            L.polyline(seg.coords, style).addTo(map)
+              .bindPopup(`Slope: ${seg.slope}, Condition: ${seg.condition}`);
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Eco Router - Vehicles</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <h1>🚘 Vehicle Profiles</h1>
+    <p>Different vehicles have different CO₂ footprints.</p>
+
+    <table border="1">
+        <tr><th>Vehicle</th><th>Fuel Type</th><th>CO₂ g/km</th></tr>
+        <tr><td>Petrol Car</td><td>Petrol</td><td>120</td></tr>
+        <tr><td>Diesel Car</td><td>Diesel</td><td>100</td></tr>
+        <tr><td>Electric Car</td><td>Battery</td><td>0 (direct)</td></tr>
+        <tr><td>Bicycle</td><td>Human</td><td>0</td></tr>
+    </table>
+
+    <button onclick="window.location.href='/'">⬅ Back</button>
+</body>
+</html>

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Eco Router - Traffic</title>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+</head>
+<body>
+    <h1>🚧 Traffic Conditions</h1>
+    <p>Real-time traffic density visualization.</p>
+
+    <div id="map"></div>
+    <button onclick="window.location.href='/'">⬅ Back</button>
+
+    <script>
+        var map = L.map('map').setView([12.9716, 77.5946], 12);
+
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            maxZoom: 19,
+        }).addTo(map);
+
+        // Mock traffic hotspots
+        var trafficData = [
+            {lat: 12.9716, lng: 77.5946, density: "high"},
+            {lat: 12.9352, lng: 77.6245, density: "medium"},
+            {lat: 12.9250, lng: 77.6000, density: "low"},
+        ];
+
+        trafficData.forEach(point => {
+            var color = point.density === "high" ? "red" : point.density === "medium" ? "orange" : "green";
+            L.circle([point.lat, point.lng], {
+                radius: 500,
+                color: color,
+                fillOpacity: 0.5
+            }).addTo(map).bindPopup(`Traffic: ${point.density}`);
+        });
+    </script>
+</body>
+</html>

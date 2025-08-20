@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Eco Route Planner - Routes</title>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+  <link rel="stylesheet" href="https://unpkg.com/leaflet-routing-machine/dist/leaflet-routing-machine.css" />
+  <style>
+    #map {
+      height: 600px;
+      width: 100%;
+      border-radius: 8px;
+    }
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+    }
+    .controls {
+      margin: 10px;
+    }
+    input {
+      padding: 6px;
+      margin: 4px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+    }
+    button {
+      padding: 6px 12px;
+      background: green;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+    button:hover {
+      background: darkgreen;
+    }
+  </style>
+</head>
+<body>
+  <h2>Eco Route Planner</h2>
+  <div class="controls">
+    <input type="text" id="start" placeholder="Enter Start (e.g. Chennai)">
+    <input type="text" id="end" placeholder="Enter Destination (e.g. Bangalore)">
+    <button onclick="getRoute()">Get Route</button>
+  </div>
+  <div id="map"></div>
+
+  <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+  <script src="https://unpkg.com/leaflet-routing-machine/dist/leaflet-routing-machine.js"></script>
+  <script src="https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.js"></script>
+
+  <script>
+    var map = L.map('map').setView([12.9716, 77.5946], 6); // Center on South India
+
+    // Add OpenStreetMap layer
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      attribution: '&copy; OpenStreetMap contributors'
+    }).addTo(map);
+
+    var control = null;
+
+    function getRoute() {
+      var start = document.getElementById("start").value;
+      var end = document.getElementById("end").value;
+
+      if (!start || !end) {
+        alert("Please enter both start and destination!");
+        return;
+      }
+
+      // Remove old route if exists
+      if (control) {
+        map.removeControl(control);
+      }
+
+      control = L.Routing.control({
+        waypoints: [],
+        routeWhileDragging: true,
+        geocoder: L.Control.Geocoder.nominatim(),
+      }).addTo(map);
+
+      // Geocode start and end addresses
+      L.Control.Geocoder.nominatim().geocode(start, function(results) {
+        if (results.length > 0) {
+          var startLatLng = results[0].center;
+          L.Control.Geocoder.nominatim().geocode(end, function(endResults) {
+            if (endResults.length > 0) {
+              var endLatLng = endResults[0].center;
+              control.setWaypoints([startLatLng, endLatLng]);
+            } else {
+              alert("Destination not found!");
+            }
+          });
+        } else {
+          alert("Start location not found!");
+        }
+      });
+    }
+  </script>
+</body>
+</html>
